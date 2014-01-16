@@ -193,6 +193,9 @@ SinglePath.prototype.showNextStep = function() {
 // in the body of the document in order for the step-by-step example to work.  How
 // these steps appear in the page is based upon the 3 style attributes (set in setStyle)
 SinglePath.prototype.write = function() {
+  console.log('row')
+  document.write(this.writeRow());
+  return;
    if (this.style=="v") {
 	   if (this.addEquals) {
 	      document.write(this.writeMultiColumn());
@@ -214,14 +217,14 @@ SinglePath.prototype.writeColumn = function() {
    for (var i=0; i<this.steps.length; i++) {
       this.steps[i].id = "webpath_step"+i;
       text += "<div id=\""+this.steps[i].id+"\"style=\" display:none\">\n"; 
-      text += "<table cellpadding=\"0\" cellspacing=\"0\"><tr><td>\n"
+//      text += "<table cellpadding=\"0\" cellspacing=\"0\"><tr><td>\n"
 
 	  text += this.steps[i].content+"\n";
-      text += "</td><td width=\"20px\"></td><td>\n";
+//      text += "</td><td width=\"20px\"></td><td>\n";
 	  if (this.helpLoc == "i") {
 	      text += this.steps[i].explainText+"\n";
 	  }
-      text += "</td></tr></table>\n";
+//      text += "</td></tr></table>\n";
       text += "</div>\n";
    }
    return text;
@@ -233,6 +236,9 @@ SinglePath.prototype.writeColumn = function() {
 //             ...
 // (useful if you're showing how to solve a math/science question
 SinglePath.prototype.writeMultiColumn = function() {
+  console.log(666)
+  document.write(this.writeColumn());
+  return;
 	// print out step 1 (located differently than other steps)
    this.steps[0].id = "webpath_step0";
    var text = "<table><tr><td valign=\"top\">";
@@ -494,12 +500,13 @@ MultiPath.prototype.write = function() {
 		this.validate();
 	}
 	if (this.valid) {
-		document.write("<table width=\"100%\"><tr valign=\"top\"><td width=\"50%\">");
+//		document.write("<table width=\"100%\"><tr valign=\"top\"><td width=\"50%\">");
 		//alert(this.getContentText());
 		this.writeSteps();
-		document.write("</td><td>");
+    document.write('<br>');
+//		document.write("</td><td>");
 	   this.writeInitialChoices();
-		document.write("</td></tr></table>");
+//		document.write("</td></tr></table>");
 	}
 }
 
